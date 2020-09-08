@@ -1,0 +1,70 @@
+name: Go CI
+
+on: [push]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+      - name: Build with Go
+        run: go build -o staging/ports2packets main.go
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Linux Binary
+          path: staging
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: unstable-linux
+          files: |
+            staging/*
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+      - name: Build with Go
+        run: go build -o staging/ports2packets main.go
+      - uses: actions/upload-artifact@v1
+        with:
+          name: macOS Binary
+          path: staging
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: unstable-macos
+          files: |
+            staging/*
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+      - name: Build with Go
+        run: go build -o staging/ports2packets.exe main.go
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Windows Binary
+          path: staging
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: unstable-windows
+          files: |
