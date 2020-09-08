@@ -68,3 +68,4 @@ jobs:
           prerelease: true
           automatic_release_tag: unstable-windows
           files: |
+            staging/*
