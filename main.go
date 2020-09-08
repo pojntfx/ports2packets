@@ -126,5 +126,7 @@ func main() {
 	}
 
 	// Write to CSV file
-	ioutil.WriteFile(*outFilePath, []byte(outFileContent), 0644)
+	if err := ioutil.WriteFile(*outFilePath, []byte(outFileContent), 0644); err != nil {
+		log.Fatal(err)
+	}
 }
