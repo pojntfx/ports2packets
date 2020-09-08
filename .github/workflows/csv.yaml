@@ -20,9 +20,9 @@ jobs:
       - name: Build with Go
         run: go build -o staging/ports2packets main.go
       - name: Create config directory
-        run: mkdir -p /etc/ports2packets/
+        run: sudo mkdir -p /etc/ports2packets/
       - name: Download Service Name and Transport Protocol Port Number Registry file
-        run: curl -L -o /etc/ports2packets/service-names-port-numbers.csv https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.csv
+        run: sudo curl -L -o /etc/ports2packets/service-names-port-numbers.csv https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.csv
       - name: Create output directory
         run: mkdir -p /tmp/ports2packets/
       - name: Create ports2packets.csv
@@ -37,4 +37,4 @@ jobs:
           prerelease: true
           automatic_release_tag: weekly-csv
           files: |
-            /tmp/ports2packets
+            /tmp/ports2packets/*
