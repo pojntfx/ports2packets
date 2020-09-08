@@ -16,7 +16,7 @@ jobs:
         with:
           go-version: 1.15
       - name: Set up nmap
-        run: apt install -y nmap
+        run: sudo apt install -y nmap
       - name: Build with Go
         run: go build -o staging/ports2packets main.go
       - name: Create config directory
