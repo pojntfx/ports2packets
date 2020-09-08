@@ -25,10 +25,8 @@ jobs:
         run: sudo curl -L -o /etc/ports2packets/service-names-port-numbers.csv https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.csv
       - name: Create output directory
         run: mkdir -p /tmp/ports2packets/
-      - name: Increase ulimit
-        run: sudo ulimit -n 10000
       - name: Create ports2packets.csv
-        run: sudo staging/ports2packets -out /tmp/ports2packets/ports2packets.csv
+        run: sudo sh -c "ulimit -n 65535 && staging/ports2packets -out /tmp/ports2packets/ports2packets.csv"
       - uses: actions/upload-artifact@v1
         with:
           name: CSV file
