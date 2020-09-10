@@ -81,7 +81,7 @@ func main() {
 	}
 
 	// Listen on UDP ports and get the packets sent by nmap
-	outFileContent := ""
+	outFileContent := "port,packet\n"
 	listenHost := "localhost"
 
 	go func() {
