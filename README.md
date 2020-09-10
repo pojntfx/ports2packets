@@ -22,6 +22,8 @@ As mentioned above, the CSV file is also pre-built every week and can be downloa
 
 ## Usage
 
+See [liwasc's database package](https://pkg.go.dev/github.com/pojntfx/liwasc/pkg/databases?tab=doc#Ports2PacketDatabase) for a Go library implementation based on the CSV output file.
+
 ```bash
 % ports2packets -help
 Usage of ports2packets:
